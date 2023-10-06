@@ -7,6 +7,192 @@
     tools:context=".ui.notifications.NotificationsFragment"
     android:background="@color/yellow1">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/user" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="12dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cv_profile">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cv_name_profile"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_profile">
+
+            <ImageView
+                android:id="@+id/bg_profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/white"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_profile_name"
+                android:layout_width="60dp"
+                android:layout_height="0dp"
+                android:src="@drawable/user"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_profile_name"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="NAMA"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_name"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="12dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cv_profile_name">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_email_profile"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_profile">
+
+            <ImageView
+                android:id="@+id/bg_profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/white"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_profile_email"
+                android:layout_width="60dp"
+                android:layout_height="0dp"
+                android:src="@drawable/user"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_profile_email"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="EMAIL"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_email"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_email" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_profile_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginVertical="12dp"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintTop_toBottomOf="@id/cv_profile_email">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_number_profile"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cv_profile">
+
+            <ImageView
+                android:id="@+id/bg_profile_number"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@color/white"
+                tools:ignore="ContentDescription" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0.0"
+                android:background="@color/black" />
+
+            <ImageView
+                android:id="@+id/iv_profile_number"
+                android:layout_width="60dp"
+                android:layout_height="0dp"
+                android:src="@drawable/user"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_profile_number"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="25dp"
+                android:text="No. Telephone"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toEndOf="@id/iv_profile_number"
+                app:layout_constraintTop_toTopOf="@id/iv_profile_number" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/text_notifications"
         android:layout_width="match_parent"
