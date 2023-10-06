@@ -63,7 +63,6 @@ class HomeFragment : Fragment() {
         // Inisialisasi CategoryAdapter
         categoryAdapter = CategoryAdapter { category ->
             // Tindakan yang akan diambil ketika salah satu item diklik
-            // Misalnya, Anda dapat menavigasi ke fragmen lain atau menampilkan detail kategori.
         }
         val layoutManagerCategory = GridLayoutManager(requireContext(), 1, RecyclerView.HORIZONTAL, false)
         binding.rvCategory.layoutManager = layoutManagerCategory
