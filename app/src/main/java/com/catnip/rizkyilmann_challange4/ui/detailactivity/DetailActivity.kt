@@ -1,5 +1,6 @@
 package com.catnip.rizkyilmann_challange4.ui.detailactivity;
 
+import DetailViewModel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,9 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.viewModels
 import coil.load
+import com.catnip.rizkyilmann_challange4.data.database.AppDatabase
+import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
+import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDatabaseDataSource
+import com.catnip.rizkyilmann_challange4.data.repository.CartRepository
+import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.ActivityDetailBinding
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
+import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
+import com.catnip.rizkyilmann_challange4.utils.proceedWhen
+import com.catnip.rizkyilmann_challange4.utils.toCurrencyFormat
 
 class DetailActivity : AppCompatActivity() {
 
@@ -50,12 +61,61 @@ class DetailActivity : AppCompatActivity() {
         tvLocationDetail.setOnClickListener {
             openGoogleMaps()
         }
+        supportActionBar?.hide()
+
+        setContentView(binding.root)
+        bindProduct(viewModel.product)
+        observeData()
+        setClickListener()
+    }
+
+    private fun bindProduct(product: DetailMenu?) {
+        product?.let { item ->
+            binding.ivBannerDetail.load(item.imgUrl) {
+                crossfade(true)
+            }
+            binding.tvHeadlineMenu.text = item.name
+            binding.tvDescriptionMenu.text = item.desc
+            binding.tvPriceDetail.text = item.price.toCurrencyFormat()
+        }
     }
 
     private fun openGoogleMaps() {
         val gmmIntentUri = Uri.parse("https://maps.app.goo.gl/h4wQKqaBuXzftGK77")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
         startActivity(mapIntent)
+    }
+
+
+    private val viewModel : DetailViewModel by viewModels {
+        val database = AppDatabase.getInstance(this)
+        val cartDao = database.cartDao()
+        val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        GenericViewModelFactory.create(
+            DetailViewModel(intent?.extras, repo)
+        )
+    }
+    private fun setClickListener(){
+        binding.btnAddtocart.setOnClickListener {
+            viewModel.addToCart()
+        }
+    }
+
+    private fun observeData() {
+
+        viewModel.productCountLiveData.observe(this) {
+            binding.tvProductCount.text = it.toString()
+        }
+        viewModel.addToCartResult.observe(this) {
+            it.proceedWhen(
+                doOnSuccess = {
+                    Toast.makeText(this, "Add to cart success !", Toast.LENGTH_SHORT).show()
+                    finish()
+                }, doOnError = {
+                    Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()
+                })
+        }
     }
 
     companion object {
@@ -68,4 +128,5 @@ class DetailActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
+
 }

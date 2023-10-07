@@ -5,10 +5,10 @@ import java.util.UUID
 
 @Parcelize
 data class DetailMenu(
-    val id: String = UUID.randomUUID().toString(),
+    val id: Int? = null,
     val position: Int,
     val name: String,
-    val price: String,
+    val price: Double,
     val imgUrl: String,
     val desc: String
 ) : Parcelable

@@ -25,4 +25,6 @@
     <string name="text_lokasi">Lokasi</string>
     <string name="tv_lokasi_detail">Jl. BSD Green Office Park Jl. BSD Grand Boulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
     <string name="text_btn_maps">Maps Navigation</string>
+    <string name="text_your_cart">Your Cart</string>
+    <string name="tv_add_to_cart">Add to cart</string>
 </resources>
