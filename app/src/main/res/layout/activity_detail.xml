@@ -131,46 +131,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_location_detail" />
 
-            <ImageView
-                android:id="@+id/iv_plus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:maxWidth="240dp"
-                android:src="@drawable/ic_plus"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/tv_product_count" />
-
-            <TextView
-                android:id="@+id/tv_product_count"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginHorizontal="8dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/iv_minus"
-                app:layout_goneMarginBottom="18dp"
-                tools:text="00" />
-
-            <ImageView
-                android:id="@+id/iv_minus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:src="@drawable/ic_minus"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_addtocart" />
-
-
             <Button
                 android:id="@+id/btn_addtocart"
                 android:layout_width="wrap_content"
@@ -181,9 +141,52 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/btn_maps" />
+                app:layout_constraintTop_toBottomOf="@id/btn_maps"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:id="@+id/ll_plusminus_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_button_rounded_border_transparent"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:weightSum="3"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btn_addtocart">
+
+                <ImageView
+                    android:id="@+id/iv_minus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_minus" />
+
+                <TextView
+                    android:id="@+id/tv_product_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginHorizontal="8dp"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    tools:text="00" />
+
+                <ImageView
+                    android:id="@+id/iv_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:maxWidth="240dp"
+                    android:src="@drawable/ic_plus" />
+            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
