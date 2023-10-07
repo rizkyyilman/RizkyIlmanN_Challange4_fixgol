@@ -62,8 +62,7 @@
                 android:fontFamily="@font/harvestbailey"
                 android:text="@string/text_price"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:ignore="MissingConstraints" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/tv_description_menu"
