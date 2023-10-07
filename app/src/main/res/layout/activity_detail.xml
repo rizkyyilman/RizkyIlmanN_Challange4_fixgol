@@ -1,134 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".ui.detailactivity.DetailActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_banner_detail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
+        android:layout_height="wrap_content">
 
-        <ImageView
-            android:id="@+id/iv_banner_detail"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_banner_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/bannerdetail"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:id="@+id/iv_back_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="30dp"
-            android:src="@drawable/backicon"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="MissingConstraints" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/iv_banner_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bannerdetail"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_desc_detail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/cl_banner_detail">
+            <ImageView
+                android:id="@+id/iv_back_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="30dp"
+                android:src="@drawable/backicon"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="MissingConstraints" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/tv_headline_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/harvestbailey"
-            android:text="@string/text_menu_burger"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="0dp" />
-
-        <TextView
-            android:id="@+id/tv_price_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/text_price"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tv_description_menu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_headline_menu"
-            android:text="@string/text_desc_burger"
-            android:textSize="16sp"
-            android:layout_margin="10dp"
-            android:layout_marginStart="10dp"
-            tools:ignore="MissingConstraints" />
-
-        <ImageView
-            android:id="@+id/iv_line"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_desc_detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_description_menu"
-            android:src="@drawable/line"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toBottomOf="@id/cl_banner_detail">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_location"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        app:layout_constraintTop_toBottomOf="@id/cl_desc_detail">
+            <TextView
+                android:id="@+id/tv_headline_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harvestbailey"
+                android:text="@string/text_menu_burger"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:id="@+id/tv_location"
+            <TextView
+                android:id="@+id/tv_price_detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/harvestbailey"
+                android:text="@string/text_price"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/tv_description_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_headline_menu"
+                android:text="@string/text_desc_burger"
+                android:textSize="16sp"
+                android:layout_margin="10dp"
+                android:fontFamily="@font/harvestbailey"
+                android:layout_marginStart="10dp"
+                tools:ignore="MissingConstraints" />
+
+            <ImageView
+                android:id="@+id/iv_line"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_description_menu"
+                android:src="@drawable/line"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/TextAppearance.Material3.BodyLarge"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="@string/text_lokasi"
-            android:textStyle="bold"
-            android:textSize="20sp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/tv_location_detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/tv_location"
-            android:text="@string/tv_lokasi_detail"
-            android:layout_marginStart="10dp"/>
-
-        <Button
-            android:id="@+id/btn_maps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/text_btn_maps"
-            app:layout_constraintTop_toBottomOf="@id/tv_location_detail"
             android:layout_marginTop="20dp"
-            android:onClick="openGoogleMaps"/>
+            app:layout_constraintTop_toBottomOf="@id/cl_desc_detail">
 
-        <Button
-            android:id="@+id/btn_addtocart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Add  to cart"
-            app:layout_constraintTop_toBottomOf="@id/btn_maps"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/tv_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/harvestbailey"
+                style="@style/TextAppearance.Material3.BodyLarge"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@string/text_lokasi"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                tools:ignore="MissingConstraints" />
 
+            <TextView
+                android:id="@+id/tv_location_detail"
+                android:layout_width="match_parent"
+                android:fontFamily="@font/harvestbailey"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_location"
+                android:text="@string/tv_lokasi_detail"
+                android:layout_marginStart="10dp"/>
+
+            <Button
+                android:id="@+id/btn_maps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/text_btn_maps"
+                android:fontFamily="@font/harvestbailey"
+                app:layout_constraintTop_toBottomOf="@id/tv_location_detail"
+                android:layout_marginTop="20dp"
+                android:onClick="openGoogleMaps"/>
+
+            <ImageView
+                android:id="@+id/iv_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxWidth="240dp"
+                android:src="@drawable/ic_plus"
+                app:layout_constraintTop_toBottomOf="@id/btn_maps"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+
+            <TextView
+                android:id="@+id/tv_product_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="8dp"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                tools:text="23"
+             app:layout_constraintEnd_toStartOf="@id/btn_addtocart"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="10dp"/>
+
+            <ImageView
+                android:id="@+id/iv_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/ic_minus"
+                app:layout_constraintEnd_toStartOf="@id/iv_plus"
+                app:layout_constraintTop_toBottomOf="@id/btn_maps"
+                android:layout_marginEnd="20dp"
+                app:layout_constraintEnd_toEndOf="@id/iv_minus"/>
+
+
+            <Button
+                android:id="@+id/btn_addtocart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:text="@string/tv_add_to_cart"
+                android:fontFamily="@font/harvestbailey"
+                app:layout_constraintTop_toBottomOf="@id/btn_maps"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginTop="20dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
