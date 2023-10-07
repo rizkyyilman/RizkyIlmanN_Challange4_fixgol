@@ -1,5 +1,7 @@
 package com.catnip.rizkyilmann_challange4.ui.home
 
+
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +19,13 @@ import com.catnip.rizkyilmann_challange4.data.MenuDataSourceImpl
 import com.catnip.rizkyilmann_challange4.databinding.FragmentHomeBinding
 import com.catnip.rizkyilmann_challange4.model.Category
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
+import com.catnip.rizkyilmann_challange4.ui.detailactivity.DetailActivity
 import com.catnip.rizkyilmann_challange4.ui.home.adapter.category.CategoryAdapter
 import com.catnip.rizkyilmann_challange4.ui.home.adapter.product.AdapterLayoutMode
 import com.catnip.rizkyilmann_challange4.ui.home.adapter.product.ProductAdapter
+
+
+
 
 class HomeFragment : Fragment() {
 
@@ -68,7 +74,7 @@ class HomeFragment : Fragment() {
         binding.rvCategory.layoutManager = layoutManagerCategory
         binding.rvCategory.adapter = categoryAdapter
 
-        // Dapatkan data dari CategoryDataSource
+        // Dapatkan data CategoryDataSource
         val categoryList: List<Category> = dataSource.getProductCategory()
         categoryAdapter.submitData(categoryList)
 
@@ -80,17 +86,23 @@ class HomeFragment : Fragment() {
         binding.rvMenu.layoutManager = layoutManagerProduct
         binding.rvMenu.adapter = productAdapter
 
-        // Dapatkan data dari MenuDataSource
+        // Dapatkan data  MenuDataSource
         val menuList: List<DetailMenu> = datasource.getDetailMenu()
         productAdapter.submitData(menuList)
     }
 
     private fun navigateToDetail(detailMenu: DetailMenu) {
-
+        val intent = Intent(requireContext(), DetailActivity::class.java)
+        intent.putExtra(DetailActivity.EXTRA_PRODUCT, detailMenu)
+        startActivity(intent)
     }
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
+
