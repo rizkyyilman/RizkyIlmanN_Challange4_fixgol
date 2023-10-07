@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/harvestbailey"
                 android:text="@string/text_menu_burger"
+                android:textColor="@color/black"
                 android:textSize="32sp"
                 android:textStyle="bold"
                 tools:ignore="MissingConstraints"
@@ -61,8 +62,10 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/harvestbailey"
                 android:text="@string/text_price"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/tv_description_menu"
@@ -73,6 +76,7 @@
                 android:fontFamily="@font/harvestbailey"
                 android:text="@string/text_desc_burger"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/tv_headline_menu"
                 tools:ignore="MissingConstraints" />
 
@@ -112,6 +116,7 @@
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/harvestbailey"
                 android:text="@string/tv_lokasi_detail"
+                android:textStyle="bold"
                 app:layout_constraintTop_toBottomOf="@id/tv_location" />
 
             <Button

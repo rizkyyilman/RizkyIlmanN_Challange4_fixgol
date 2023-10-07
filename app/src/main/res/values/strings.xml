@@ -27,4 +27,9 @@
     <string name="text_btn_maps">Maps Navigation</string>
     <string name="text_your_cart">Your Cart</string>
     <string name="tv_add_to_cart">Add to cart</string>
+    <string name="text_checkout">Checkout</string>
+    <string name="tv_nama_profile">NAMA</string>
+    <string name="tv_email_profile">EMAIL</string>
+    <string name="text_nomortelepon">No. Telephone</string>
+    <string name="tv_total_price_cart">Total Price</string>
 </resources>
