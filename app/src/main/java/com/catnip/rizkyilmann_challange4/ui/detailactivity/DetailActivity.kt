@@ -97,6 +97,15 @@ class DetailActivity : AppCompatActivity() {
         )
     }
     private fun setClickListener(){
+        binding.ivBackIcon.setOnClickListener {
+            onBackPressed()
+        }
+        binding.ivMinus.setOnClickListener {
+            viewModel.minus()
+        }
+        binding.ivPlus.setOnClickListener {
+            viewModel.add()
+        }
         binding.btnAddtocart.setOnClickListener {
             viewModel.addToCart()
         }
