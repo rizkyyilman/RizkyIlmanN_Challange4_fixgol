@@ -108,7 +108,7 @@ class CartOrderViewHolder(
         setCartNotes(item)
     }
 
-    @SuppressLint("StringFormatInvalid")
+
     private fun setCartData(item: CartProduct) {
         with(binding) {
             binding.ivMenuCartOrder.load(item.product.imgUrl) {

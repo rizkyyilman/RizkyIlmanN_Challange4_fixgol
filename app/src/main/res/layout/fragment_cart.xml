@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/ll_top_cart"
         app:layout_constraintBottom_toTopOf="@id/cv_section_checkout"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_cart_menu"/>
 
     <androidx.cardview.widget.CardView

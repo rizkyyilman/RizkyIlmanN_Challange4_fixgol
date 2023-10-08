@@ -127,6 +127,7 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
+
     companion object {
         const val EXTRA_PRODUCT = "EXTRA_PRODUCT"
 
