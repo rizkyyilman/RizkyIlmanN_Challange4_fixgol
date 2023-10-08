@@ -33,4 +33,7 @@
     <string name="text_nomortelepon">No. Telephone</string>
     <string name="tv_total_price_cart">Total Price</string>
     <string name="tv_name_product">Nama Product</string>
+    <string name="quantity_total">x%</string>
+    <string name="text_empty_cart">Cart is Empty</string>
+
 </resources>

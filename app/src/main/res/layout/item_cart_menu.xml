@@ -8,7 +8,7 @@
 
 
     <ImageView
-        android:id="@+id/iv_menu"
+        android:id="@+id/iv_menu_cart"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="10dp"
@@ -27,11 +27,12 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toEndOf="@id/iv_menu"
+        app:layout_constraintStart_toEndOf="@id/iv_menu_cart"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="32dp" />
 
     <TextView
+        android:id="@+id/tv_price_cart"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="12dp"
@@ -59,7 +60,7 @@
         android:maxLines="3"
         android:padding="8dp"
         android:textSize="12sp"
-        app:layout_constraintTop_toBottomOf="@id/iv_menu"
+        app:layout_constraintTop_toBottomOf="@id/iv_menu_cart"
         tools:ignore="MissingConstraints"
         tools:text="Note ini bisa diisi" />
 
@@ -82,7 +83,7 @@
         android:orientation="horizontal"
         android:padding="4dp"
         android:weightSum="3"
-        app:layout_constraintStart_toEndOf="@id/iv_menu"
+        app:layout_constraintStart_toEndOf="@id/iv_menu_cart"
         app:layout_constraintTop_toBottomOf="@id/tv_product_name">
 
         <ImageView
