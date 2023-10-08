@@ -26,8 +26,8 @@ class CheckoutActivity : AppCompatActivity() {
         val repo: CartRepository = CartRepositoryImpl(cartDataSource)
         GenericViewModelFactory.create(CheckoutViewModel(repo))
     }
-    private val binding : ActivityCheckoutBinding by lazy {
-    ActivityCheckoutBinding.inflate(layoutInflater)
+    private val binding: ActivityCheckoutBinding by lazy {
+        ActivityCheckoutBinding.inflate(layoutInflater)
     }
 
     private val adapter: CartAdapter by lazy {
@@ -36,9 +36,8 @@ class CheckoutActivity : AppCompatActivity() {
 
 
     private fun setupList() {
-        binding.rvCart.adapter = adapter
+        binding.rvCheckout.adapter = adapter
     }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,21 +49,17 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-        viewModel.cartList.observe(this) { result ->
-            when (result) {
+        viewModel.cartList.observe(this) { resultWrapper ->
+            when (resultWrapper) {
                 is ResultWrapper.Success -> {
                     binding.layoutState.root.isVisible = false
                     binding.layoutState.pbLoading.isVisible = false
                     binding.layoutState.tvError.isVisible = false
-                    binding.rvCart.isVisible = true
+                    binding.rvCheckout.isVisible = true
 
-                    // Ambil data dari payload
-                    val (carts, totalPrice) = result.payload!!
 
-                    // Set data ke adapter
+                    val (carts, totalPrice) = resultWrapper.payload!!
                     adapter.submitData(carts)
-
-                    // Set total harga ke TextView
                     binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }
 
@@ -72,15 +67,15 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.pbLoading.isVisible = true
                     binding.layoutState.tvError.isVisible = false
-                    binding.rvCart.isVisible = false
+                    binding.rvCheckout.isVisible = false
                 }
 
                 is ResultWrapper.Error -> {
                     binding.layoutState.root.isVisible = true
                     binding.layoutState.pbLoading.isVisible = false
                     binding.layoutState.tvError.isVisible = true
-                    binding.layoutState.tvError.text = result.message.orEmpty()
-                    binding.rvCart.isVisible = false
+                    binding.layoutState.tvError.text = resultWrapper.message.orEmpty()
+                    binding.rvCheckout.isVisible = false
                 }
 
                 is ResultWrapper.Empty -> {
@@ -88,10 +83,10 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.layoutState.pbLoading.isVisible = false
                     binding.layoutState.tvError.isVisible = true
                     binding.layoutState.tvError.text = getString(R.string.text_empty_cart)
-                    binding.rvCart.isVisible = false
+                    binding.rvCheckout.isVisible = false
 
                     // Ambil total harga dari payload jika tersedia
-                    result.payload?.let { (_, totalPrice) ->
+                    resultWrapper.payload?.let { (_, totalPrice) ->
                         binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                     }
                 }
