@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">RizkyIlmanN_Challange4</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_dashboard">Cart</string>
+    <string name="title_notifications">Profile</string>
     <string name="text_hai">Halo Rizky ! ,</string>
     <string name="text_maumakan">Mau makan apa hari ini?</string>
     <string name="text_discount">Discount 50% !</string>
@@ -25,4 +25,17 @@
     <string name="text_lokasi">Lokasi</string>
     <string name="tv_lokasi_detail">Jl. BSD Green Office Park Jl. BSD Grand Boulevard, Sampora, BSD, Kabupaten Tangerang, Banten 15345</string>
     <string name="text_btn_maps">Maps Navigation</string>
+    <string name="text_your_cart">Your Cart</string>
+    <string name="tv_add_to_cart">Add to cart</string>
+    <string name="text_checkout">Checkout</string>
+    <string name="tv_nama_profile">NAMA</string>
+    <string name="tv_email_profile">EMAIL</string>
+    <string name="text_nomortelepon">No. Telephone</string>
+    <string name="tv_total_price_cart">Total Price</string>
+    <string name="tv_name_product">Nama Product</string>
+    <string name="quantity_total">x%s</string>
+    <string name="text_empty_cart">Cart is Empty</string>
+    <string name="text_confirm_order">Confirmation Order</string>
+    <string name="text_button_order">Pesan</string>
+
 </resources>

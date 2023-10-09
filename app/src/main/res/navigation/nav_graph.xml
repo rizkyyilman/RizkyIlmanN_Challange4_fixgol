@@ -11,15 +11,4 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.catnip.rizkyilmann_challange4.ui.cart.CartFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_cart" />
-
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.catnip.rizkyilmann_challange4.ui.profile.ProfileFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_profile" />
 </navigation>
