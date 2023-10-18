@@ -37,5 +37,16 @@
     <string name="text_empty_cart">Cart is Empty</string>
     <string name="text_confirm_order">Confirmation Order</string>
     <string name="text_button_order">Pesan</string>
+    <string name="text_highlight_register">Register Here</string>
+    <string name="hint_name">Your name</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_confirm_password">Confirm Password</string>
+    <string name="text_log_in">Log in</string>
+    <string name="text_not_registered_yet_register_here">Not registered yet ? Register Here</string>
+    <string name="text_error_email_empty">Email should not be empty</string>
+    <string name="text_error_email_invalid">Enter a valid format email</string>
+    <string name="text_error_password_empty">Password should not be empty</string>
+    <string name="text_error_password_less_than_8_char">Password cannot less than 8 character</string>
 
 </resources>
