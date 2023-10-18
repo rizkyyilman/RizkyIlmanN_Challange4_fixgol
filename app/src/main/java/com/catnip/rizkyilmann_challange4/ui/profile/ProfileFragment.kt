@@ -1,3 +1,5 @@
+package com.catnip.rizkyilmann_challange4.ui.profile
+
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
@@ -22,14 +24,11 @@ import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment() {
 
-    private val binding: FragmentProfileBinding by lazy {
-        FragmentProfileBinding.inflate(layoutInflater)
-    }
+    private lateinit var binding: FragmentProfileBinding
 
     private val viewModel: ProfileViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
     }
-
     private fun createViewModel(): ProfileViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
         val dataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
@@ -41,11 +40,12 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = binding.root
+        // Inisialisasi binding
+        binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
         setupForm()
         setClickListeners()
         observeResult()
-        return rootView
     }
 
     private fun setupForm() {
