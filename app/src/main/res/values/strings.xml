@@ -48,5 +48,10 @@
     <string name="text_error_email_invalid">Enter a valid format email</string>
     <string name="text_error_password_empty">Password should not be empty</string>
     <string name="text_error_password_less_than_8_char">Password cannot less than 8 character</string>
+    <string name="text_register">Register</string>
+    <string name="text_password_does_not_match">Password doesn\'t match</string>
+    <string name="text_error_name_cannot_empty">Name cannot be empty</string>
+    <string name="text_highlight_login_here">Login Here</string>
+    <string name="text_already_have_an_account_click_here">Already have an Account ? Login Here</string>
 
 </resources>
