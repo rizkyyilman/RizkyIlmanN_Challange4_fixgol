@@ -47,6 +47,8 @@
         }
 
 
+
+
         private fun observeResult() {
             viewModel.registerResult.observe(this) {
                 it.proceedWhen(
