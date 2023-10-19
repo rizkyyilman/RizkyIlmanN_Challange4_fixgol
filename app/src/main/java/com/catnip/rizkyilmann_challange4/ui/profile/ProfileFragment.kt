@@ -16,6 +16,7 @@ import com.catnip.rizkyilmann_challange4.data.repository.UserRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.FragmentProfileBinding
 import com.catnip.rizkyilmann_challange4.network.auth.FirebaseAuthDataSourceImpl
 import com.catnip.rizkyilmann_challange4.ui.profile.ProfileViewModel
+import com.catnip.rizkyilmann_challange4.ui.registeractivity.RegisterActivity
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.highLightWord
 import com.catnip.rizkyilmann_challange4.utils.proceedWhen
@@ -43,6 +44,10 @@ class ProfileFragment : Fragment() {
         // Inisialisasi binding
         binding = FragmentProfileBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         setupForm()
         setClickListeners()
         observeResult()
@@ -96,8 +101,10 @@ class ProfileFragment : Fragment() {
     }
 
     private fun navigateToRegister() {
-        // Ganti Intent sesuai dengan tujuan Anda
+        val intent = Intent(requireContext(), RegisterActivity::class.java)
+        startActivity(intent)
     }
+
 
     private fun doLogin() {
         if (isFormValid()) {
