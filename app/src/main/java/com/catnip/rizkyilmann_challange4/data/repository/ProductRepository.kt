@@ -1,34 +1,34 @@
-import com.catnip.rizkyilmann_challange4.data.CategoryDataSource
-import com.catnip.rizkyilmann_challange4.data.database.datasource.ProductDataSource
-import com.catnip.rizkyilmann_challange4.data.mapper.toProductList
+package com.catnip.rizkyilmann_challange4.data.repository
+
+
 import com.catnip.rizkyilmann_challange4.model.Category
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
+import com.catnip.rizkyilmann_challange4.network.api.datasource.AppDataSource
+import com.catnip.rizkyilmann_challange4.network.api.model.category.toCategoryList
+import com.catnip.rizkyilmann_challange4.network.api.model.product.toProductList
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
-import com.catnip.rizkyilmann_challange4.utils.proceed
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
-import java.util.concurrent.Flow
+import com.catnip.rizkyilmann_challange4.utils.proceedFlow
+import kotlinx.coroutines.flow.Flow
 
 interface ProductRepository {
-    fun getCategories(): List<Category>
-    fun getProducts(): kotlinx.coroutines.flow.Flow<ResultWrapper<List<DetailMenu>>>
+    fun getCategories(): Flow<ResultWrapper<List<Category>>>
+    fun getProducts(category: String? = null): Flow<ResultWrapper<List<DetailMenu?>>>
 }
 
 class ProductRepositoryImpl(
-    private val productDataSource: ProductDataSource,
-    private val dummyCategoryDataSource: CategoryDataSource
+    private val apiDataSource: AppDataSource,
 ) : ProductRepository {
 
-    override fun getCategories(): List<Category> {
-        return dummyCategoryDataSource.getProductCategory()
+    override fun getCategories(): Flow<ResultWrapper<List<Category>>> {
+        return proceedFlow {
+            apiDataSource.getCategories().data?.toCategoryList() ?: emptyList()
+        }
     }
 
-    override fun getProducts(): kotlinx.coroutines.flow.Flow<ResultWrapper<List<DetailMenu>>> {
-        return productDataSource.getAllProducts().map { proceed { it.toProductList() } }.onStart {
-            emit(ResultWrapper.Loading())
-            delay(2000)
+
+    override fun getProducts(category: String?): Flow<ResultWrapper<List<DetailMenu?>>> {
+        return proceedFlow {
+            apiDataSource.getProducts(category).data?.toProductList() ?: emptyList()
         }
     }
 }
-

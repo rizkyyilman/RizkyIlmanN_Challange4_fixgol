@@ -18,6 +18,7 @@ import com.catnip.rizkyilmann_challange4.data.repository.CartRepository
 import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.FragmentCartBinding
 import com.catnip.rizkyilmann_challange4.model.Cart
+import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartAdapter
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartListener
 import com.catnip.rizkyilmann_challange4.ui.checkout.CheckoutActivity
@@ -111,7 +112,7 @@ class CartFragment : Fragment() {
                 binding.layoutState.root.isVisible = true
                 binding.layoutState.pbLoading.isVisible = false
                 binding.layoutState.tvError.isVisible = true
-                binding.layoutState.tvError.text = getString(R.string.text_empty_cart)
+                binding.layoutState.tvError.text = getString(R.string.text_cart_is_empty)
                 data.payload?.let { (_, totalPrice) ->
                     binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }

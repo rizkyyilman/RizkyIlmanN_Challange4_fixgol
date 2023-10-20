@@ -9,9 +9,15 @@ data class CartEntity(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     @ColumnInfo(name = "product_id")
-    var productId : Int = 0,
+    var productId: Int? = null,
+    @ColumnInfo(name = "product_name")
+    val productName: String,
+    @ColumnInfo(name = "product_price")
+    val productPrice: Double,
+    @ColumnInfo(name = "product_img_url")
+    val productImgUrl: String,
     @ColumnInfo(name = "item_quantity")
-    var quantity: Int = 0,
+    var itemQuantity: Int = 0,
     @ColumnInfo(name = "item_notes")
-    var notes: String? = null,
+    var itemNotes: String? = null,
 )

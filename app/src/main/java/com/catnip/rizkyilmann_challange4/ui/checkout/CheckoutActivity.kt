@@ -11,6 +11,8 @@ import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDatabaseDa
 import com.catnip.rizkyilmann_challange4.data.repository.CartRepository
 import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.ActivityCheckoutBinding
+import com.catnip.rizkyilmann_challange4.model.Cart
+import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartAdapter
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
@@ -57,8 +59,8 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.layoutState.tvError.isVisible = false
                     binding.rvCheckout.isVisible = true
 
-
-                    val (carts, totalPrice) = resultWrapper.payload!!
+                    val carts: List<Cart> = resultWrapper.payload?.first ?: emptyList()
+                    val totalPrice = resultWrapper.payload?.second ?: 0.0
                     adapter.submitData(carts)
                     binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }
@@ -86,11 +88,11 @@ class CheckoutActivity : AppCompatActivity() {
                     binding.rvCheckout.isVisible = false
 
                     // Ambil total harga dari payload jika tersedia
-                    resultWrapper.payload?.let { (_, totalPrice) ->
-                        binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
-                    }
+                    val totalPrice = resultWrapper.payload?.second ?: 0.0
+                    binding.tvTotalPrice.text = totalPrice.toCurrencyFormat()
                 }
             }
         }
     }
+
 }

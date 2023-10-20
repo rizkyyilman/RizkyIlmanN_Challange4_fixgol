@@ -3,7 +3,7 @@ package com.catnip.rizkyilmann_challange4.data.repository
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
 import com.catnip.rizkyilmann_challange4.data.database.entity.CartEntity
 import com.catnip.rizkyilmann_challange4.data.mapper.toCartEntity
-import com.catnip.rizkyilmann_challange4.data.mapper.toCartProductList
+import com.catnip.rizkyilmann_challange4.data.mapper.toCartList
 import com.catnip.rizkyilmann_challange4.model.Cart
 import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onStart
 import java.lang.IllegalStateException
 
 interface CartRepository {
-    fun getUserCardData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>>
+    fun getUserCardData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>>
     suspend fun createCart(product: DetailMenu, totalQuantity: Int): Flow<ResultWrapper<Boolean>>
     suspend fun decreaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
@@ -30,14 +30,14 @@ class CartRepositoryImpl(
     private val dataSource: CartDataSource
 ) : CartRepository {
 
-    override fun getUserCardData(): Flow<ResultWrapper<Pair<List<CartProduct>, Double>>> {
+    override fun getUserCardData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
         return dataSource.getAllCarts()
             .map {
                 proceed {
-                    val result = it.toCartProductList()
+                    val result = it.toCartList()
                     val totalPrice = result.sumOf {
-                        val pricePerItem = it.product.price
-                        val quantity = it.cart.itemQuantity
+                        val pricePerItem = it.productPrice
+                        val quantity = it.itemQuantity
                         pricePerItem * quantity
                     }
                     Pair(result, totalPrice)
@@ -61,7 +61,13 @@ class CartRepositoryImpl(
         return product.id?.let { productId ->
             proceedFlow {
                 val affectedRow = dataSource.insertCart(
-                    CartEntity(productId = productId, quantity = totalQuantity)
+                    CartEntity(
+                        productId = productId,
+                        itemQuantity = totalQuantity,
+                        productImgUrl = product.imgUrl,
+                        productName = product.name,
+                        productPrice = product.price
+                    )
                 )
                 affectedRow > 0
             }
