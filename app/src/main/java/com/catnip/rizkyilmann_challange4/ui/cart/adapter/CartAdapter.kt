@@ -19,23 +19,23 @@ class CartAdapter (private val cartListener: CartListener? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dataDiffer =
-        AsyncListDiffer(this, object : DiffUtil.ItemCallback<CartProduct>() {
+        AsyncListDiffer(this, object : DiffUtil.ItemCallback<Cart>() {
             override fun areItemsTheSame(
-                oldItem: CartProduct,
-                newItem: CartProduct
+                oldItem: Cart,
+                newItem: Cart
             ): Boolean {
-                return oldItem.cart.id == newItem.cart.id && oldItem.product.id == newItem.product.id
+                return oldItem.id == newItem.id && oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: CartProduct,
-                newItem: CartProduct
+                oldItem: Cart,
+                newItem: Cart
             ): Boolean {
                 return oldItem.hashCode() == newItem.hashCode()
             }
         })
 
-    fun submitData(data: List<CartProduct>) {
+    fun submitData(data: List<Cart>) {
         dataDiffer.submitList(data)
     }
 
@@ -54,7 +54,7 @@ class CartAdapter (private val cartListener: CartListener? = null) :
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderBinder<CartProduct>).bind(dataDiffer.currentList[position])
+        (holder as ViewHolderBinder<Cart>).bind(dataDiffer.currentList[position])
     }
 
 }
@@ -62,70 +62,70 @@ class CartAdapter (private val cartListener: CartListener? = null) :
 class CartViewHolder(
     private val binding: ItemCartMenuBinding,
     private val cartListener: CartListener?
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartProduct> {
-    override fun bind(item: CartProduct) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
         setClickListeners(item)
     }
 
-    private fun setCartData(item: CartProduct) {
+    private fun setCartData(item: Cart) {
         with(binding) {
-            binding.ivMenuCart.load(item.product.imgUrl) {
+            binding.ivMenuCart.load(item.productImgUrl) {
                 crossfade(true)
             }
-            tvProductCount.text = item.cart.itemQuantity.toString()
-            tvProductName.text = item.product.name
-            tvPriceCart.text = (item.cart.itemQuantity * item.product.price).toString()
+            tvProductCount.text = item.itemQuantity.toString()
+            tvProductName.text = item.productName
+            tvPriceCart.text = (item.itemQuantity * item.productPrice).toString()
         }
     }
 
-    private fun setCartNotes(item: CartProduct) {
-        binding.etNotesItem.setText(item.cart.itemNotes)
+    private fun setCartNotes(item: Cart) {
+        binding.etNotesItem.setText(item.itemNotes)
         binding.etNotesItem.doneEditing {
             binding.etNotesItem.clearFocus()
-            val newItem = item.cart.copy().apply {
+            val newItem = item.copy().apply {
                 itemNotes = binding.etNotesItem.text.toString().trim()
             }
             cartListener?.onUserDoneEditingNotes(newItem)
         }
     }
 
-    private fun setClickListeners(item: CartProduct) {
+    private fun setClickListeners(item: Cart) {
         with(binding) {
-            ivMinus.setOnClickListener { cartListener?.onMinusTotalItemCartClicked(item.cart) }
-            ivPlus.setOnClickListener { cartListener?.onPlusTotalItemCartClicked(item.cart) }
-            ivRemoveCart.setOnClickListener { cartListener?.onRemoveCartClicked(item.cart) }
+            ivMinus.setOnClickListener { cartListener?.onMinusTotalItemCartClicked(item) }
+            ivPlus.setOnClickListener { cartListener?.onPlusTotalItemCartClicked(item) }
+            ivRemoveCart.setOnClickListener { cartListener?.onRemoveCartClicked(item) }
         }
     }
 }
 
 class CartOrderViewHolder(
     private val binding: ItemCartMenuOrderBinding,
-) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<CartProduct> {
-    override fun bind(item: CartProduct) {
+) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
+    override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
     }
 
 
-    private fun setCartData(item: CartProduct) {
+    private fun setCartData(item: Cart) {
         with(binding) {
-            binding.ivMenuCartOrder.load(item.product.imgUrl) {
+            binding.ivMenuCartOrder.load(item.productImgUrl) {
                 crossfade(true)
             }
             tvTotalQuantity.text =
                 itemView.rootView.context.getString(
                     R.string.quantity_total,
-                    item.cart.itemQuantity.toString()
+                    item.itemQuantity.toString()
                 )
-            tvProductName.text = item.product.name
-            tvProductPrice.text = (item.cart.itemQuantity * item.product.price).toString()
+            tvProductName.text = item.productName
+            tvProductPrice.text = (item.itemQuantity * item.productPrice).toString()
         }
     }
 
-    private fun setCartNotes(item: CartProduct) {
-        binding.tvNotes.text = item.cart.itemNotes
+    private fun setCartNotes(item: Cart) {
+        binding.tvNotes.text = item.itemNotes
     }
 
 }
