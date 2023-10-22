@@ -15,10 +15,10 @@ import java.util.concurrent.TimeUnit
 
 interface AppApiService {
 
-    @GET("products")
+    @GET("listmenu")
     suspend fun getProducts(@Query("category") category: String? = null): ProductsResponse
 
-    @GET("categories")
+    @GET("category")
     suspend fun getCategories(): CategoriesResponse
 
     @GET("order")

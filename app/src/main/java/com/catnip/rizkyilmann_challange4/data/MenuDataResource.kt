@@ -13,7 +13,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 1,
             position = 1,
             name = "Burger",
-            price = 15.000,
+            harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/burger.jpg",
             desc = "Perpaduan antara roti dengan ham yang memiliki cita rasa tiada tara !"
         ),
@@ -21,7 +21,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 2,
             position = 2,
             name = "Ayam Goyeng",
-            price = 20.000,
+            harga = 20.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/ayamgoreng.jpg",
             desc = "Ayam yang dibalur dengan tepung dan bumbu rempah pilihan khas nusantara"
         ),
@@ -29,7 +29,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 3,
             position = 3,
             name = "Dumpling",
-            price = 10.000,
+            harga = 10.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/dumpling.jpg",
             desc = "Nama lain Siomay"
         ),
@@ -37,7 +37,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 4,
             position = 4,
             name = "Mie Goreng",
-            price = 25.000,
+            harga = 25.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/miegoreng.jpg",
             desc = "Makanan Terenak Sejagat Raya"
         ),
@@ -45,7 +45,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 5,
             position = 5,
             name = "Kopi",
-            price = 20.000,
+            harga = 20.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/kopi.jpg",
             desc = "Kopi yang bikin badan jadi ga ngantuk !"
         ),
@@ -53,7 +53,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 6,
             position = 6,
             name = "Kenteng Goreng",
-            price = 15.000,
+            harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/kentanggoreng.jpg",
             desc = " Kentang Goreng yang digoreng dengan minyak pilihan"
         ),
@@ -61,7 +61,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 7,
             position = 7,
             name = "Sate Ayam",
-            price = 15.000,
+            harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/sateayam.jpg",
             desc = "Sate ayam seperti biasanya"
         ),
@@ -69,7 +69,7 @@ class MenuDataSourceImpl() : MenuDataSource {
             id = 8,
             position = 8,
             name = "Jus Strawberry",
-            price = 15.000,
+            harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/jusstrawberry.jpg",
             desc = "Buah strawberry yang diblender dengan air dan susu kental manis"
         )

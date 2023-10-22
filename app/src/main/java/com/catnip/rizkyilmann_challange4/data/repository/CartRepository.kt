@@ -68,7 +68,7 @@ class CartRepositoryImpl(
                         itemQuantity = totalQuantity,
                         productImgUrl = product.imgUrl,
                         productName = product.name,
-                        productPrice = product.price
+                        productPrice = product.harga
                     )
                 )
                 affectedRow > 0

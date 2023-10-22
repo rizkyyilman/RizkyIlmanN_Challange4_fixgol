@@ -49,7 +49,7 @@ class DetailActivity : AppCompatActivity() {
             }
             tvHeadlineMenu.text = detailMenu.name
             tvDescriptionMenu.text = detailMenu.desc
-            tvPriceDetail.text = detailMenu.price.toString()
+            tvPriceDetail.text = detailMenu.harga.toString()
         }
 
         // Handle tombol kembali
@@ -78,7 +78,7 @@ class DetailActivity : AppCompatActivity() {
             }
             binding.tvHeadlineMenu.text = item.name
             binding.tvDescriptionMenu.text = item.desc
-            binding.tvPriceDetail.text = item.price.toCurrencyFormat()
+            binding.tvPriceDetail.text = item.harga.toCurrencyFormat()
         }
     }
 

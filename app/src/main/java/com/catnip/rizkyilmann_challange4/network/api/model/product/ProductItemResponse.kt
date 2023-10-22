@@ -34,7 +34,7 @@ fun ProductItemResponse.toProduct() = this.position?.let {
     DetailMenu(
         id = this.id,
         name = this.name.orEmpty(),
-        price = this.price ?: 0.0,
+        harga = this.price ?: 0.0,
         desc = this.desc.orEmpty(),
         imgUrl = this.imgUrl.orEmpty(),
         position = it
