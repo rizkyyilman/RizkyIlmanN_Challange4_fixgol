@@ -8,7 +8,7 @@ data class DetailMenu(
     val id: Int? = null,
     val position: Int,
     val name: String,
-    val price: Double,
+    val harga: Double,
     val imgUrl: String,
     val desc: String
 ) : Parcelable

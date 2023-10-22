@@ -31,14 +31,14 @@ class DetailViewModel (
     fun add() {
         val count = (productCountLiveData.value ?: 0) + 1
         productCountLiveData.postValue(count)
-        priceLiveData.postValue(product?.price?.times(count) ?: 0.0)
+        priceLiveData.postValue(product?.harga?.times(count) ?: 0.0)
     }
 
     fun minus() {
         if ((productCountLiveData.value ?: 0) > 0) {
             val count = (productCountLiveData.value ?: 0) - 1
             productCountLiveData.postValue(count)
-            priceLiveData.postValue(product?.price?.times(count) ?: 0.0)
+            priceLiveData.postValue(product?.harga?.times(count) ?: 0.0)
         }
     }
 
