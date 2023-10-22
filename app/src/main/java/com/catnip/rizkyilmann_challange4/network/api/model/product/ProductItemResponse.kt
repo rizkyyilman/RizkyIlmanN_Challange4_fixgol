@@ -6,39 +6,29 @@ import com.google.gson.annotations.SerializedName
 
 @Keep
 data class ProductItemResponse(
-    @SerializedName("desc")
+    @SerializedName("detail")
     val desc: String?,
     @SerializedName("id")
     val id: Int?,
     @SerializedName("position")
     val position: Int?,
-    @SerializedName("name")
+    @SerializedName("nama")
     val name: String?,
-    @SerializedName("price")
+    @SerializedName("harga")
     val price: Double?,
-    @SerializedName("product_img_url")
-    val imgUrl: String?,
-    @SerializedName("rating")
-    val rating: Double?,
-    @SerializedName("supplier_name")
-    val supplierName: String?,
-    @SerializedName("weight_in_kg")
-    val weightInKg: Double?
+    @SerializedName("image_url")
+    val imgUrl: String?
 )
 
 
-// masih bingung
-
-
-fun ProductItemResponse.toProduct() = this.position?.let {
+fun ProductItemResponse.toProduct() =
     DetailMenu(
         id = this.id,
         name = this.name.orEmpty(),
         harga = this.price ?: 0.0,
         desc = this.desc.orEmpty(),
-        imgUrl = this.imgUrl.orEmpty(),
-        position = it
+        imgUrl = this.imgUrl.orEmpty()
     )
-}
+
 
 fun Collection<ProductItemResponse>.toProductList() = this.map { it.toProduct() }

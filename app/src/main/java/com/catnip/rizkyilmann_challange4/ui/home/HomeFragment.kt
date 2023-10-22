@@ -24,6 +24,7 @@ import com.catnip.rizkyilmann_challange4.databinding.FragmentHomeBinding
 import com.catnip.rizkyilmann_challange4.model.Category
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppApiDataSource
+import com.catnip.rizkyilmann_challange4.network.api.repository.ProductRepositoryImpl2
 import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
 import com.catnip.rizkyilmann_challange4.ui.detailactivity.DetailActivity
 import com.catnip.rizkyilmann_challange4.ui.home.adapter.category.CategoryAdapter
@@ -45,7 +46,7 @@ class HomeFragment : Fragment() {
 
     private val productAdapter : ProductAdapter by lazy {
         ProductAdapter{
-            viewModel.getProducts()
+
         }
     }
 
@@ -109,7 +110,9 @@ class HomeFragment : Fragment() {
                     isVisible = true
                     adapter = productAdapter
                 }
-                it.payload?.let { data -> productAdapter.submitData(data) }
+                it.payload?.let {
+                        data -> productAdapter.submitData(data)
+                }
             }, doOnLoading = {
                 binding.layoutStateProduct.root.isVisible = true
                 binding.layoutStateProduct.pbLoading.isVisible = true
