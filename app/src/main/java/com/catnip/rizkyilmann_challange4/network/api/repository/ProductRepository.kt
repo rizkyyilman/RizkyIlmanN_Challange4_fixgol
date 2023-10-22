@@ -13,7 +13,7 @@ interface ProductRepository {
     fun getCategories(): Flow<ResultWrapper<List<Category>>>
     fun getProducts(category: String? = null): Flow<ResultWrapper<List<DetailMenu>>>
 }
-class ProductRepositoryImpl(
+class ProductRepositoryImpl2(
     private val apiDataSource: AppDataSource,
 ) : ProductRepository {
 

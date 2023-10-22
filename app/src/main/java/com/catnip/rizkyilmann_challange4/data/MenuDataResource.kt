@@ -11,7 +11,6 @@ class MenuDataSourceImpl() : MenuDataSource {
     override fun getDetailMenu(): List<DetailMenu> = listOf(
         DetailMenu(
             id = 1,
-            position = 1,
             name = "Burger",
             harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/burger.jpg",
@@ -19,7 +18,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 2,
-            position = 2,
             name = "Ayam Goyeng",
             harga = 20.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/ayamgoreng.jpg",
@@ -27,7 +25,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 3,
-            position = 3,
             name = "Dumpling",
             harga = 10.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/dumpling.jpg",
@@ -35,7 +32,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 4,
-            position = 4,
             name = "Mie Goreng",
             harga = 25.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/miegoreng.jpg",
@@ -43,7 +39,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 5,
-            position = 5,
             name = "Kopi",
             harga = 20.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/kopi.jpg",
@@ -51,7 +46,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 6,
-            position = 6,
             name = "Kenteng Goreng",
             harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/kentanggoreng.jpg",
@@ -59,7 +53,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 7,
-            position = 7,
             name = "Sate Ayam",
             harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/sateayam.jpg",
@@ -67,7 +60,6 @@ class MenuDataSourceImpl() : MenuDataSource {
         ),
         DetailMenu(
             id = 8,
-            position = 8,
             name = "Jus Strawberry",
             harga = 15.000,
             imgUrl = "https://raw.githubusercontent.com/rizkyyilman/Challange3/feature/feature_detail/app/src/main/res/drawable/jusstrawberry.jpg",

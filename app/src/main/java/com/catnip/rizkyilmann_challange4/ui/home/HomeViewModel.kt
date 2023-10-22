@@ -29,13 +29,12 @@ class HomeViewModel (private val repository: ProductRepository) : ViewModel() {
         }
     }
 
-    fun getProducts(category: String? = null) {
+    fun getProducts(category: String? = null){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getProducts(category).collect {
+            repository.getProducts(if(category == "all") null else category).collect{
                 _products.postValue(it)
             }
         }
     }
-
 
 }
