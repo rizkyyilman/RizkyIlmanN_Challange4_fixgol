@@ -38,9 +38,10 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
 
-    private val categoryAdapter : CategoryAdapter by lazy {
-        CategoryAdapter{
-            viewModel.getProducts()
+    private val categoryAdapter: CategoryAdapter by lazy {
+        CategoryAdapter { selectedCategory ->
+            // Panggil fungsi untuk mengambil produk berdasarkan kategori yang dipilih
+            viewModel.getProducts(selectedCategory.slug)
         }
     }
 

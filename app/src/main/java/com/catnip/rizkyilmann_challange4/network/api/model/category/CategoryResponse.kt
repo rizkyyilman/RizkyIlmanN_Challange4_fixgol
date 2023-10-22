@@ -10,7 +10,7 @@ data class CategoryResponse(
     val id: String?,
     @SerializedName("image_url")
     val imgUrl: String?,
-    @SerializedName("name")
+    @SerializedName("nama")
     val name: String?,
     @SerializedName("slug")
     val slug: String?
