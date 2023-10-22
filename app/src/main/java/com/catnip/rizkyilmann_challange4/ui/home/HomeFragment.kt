@@ -40,15 +40,17 @@ class HomeFragment : Fragment() {
 
     private val categoryAdapter : CategoryAdapter by lazy {
         CategoryAdapter{
-            viewModel.getProducts(it.slug)
+            viewModel.getProducts()
         }
     }
 
     private val productAdapter : ProductAdapter by lazy {
-        ProductAdapter{
-
+        ProductAdapter { product ->
+            // Navigasi ke DetailActivity saat item produk diklik
+            DetailActivity.startActivity(requireContext(), product)
         }
     }
+
 
     private val viewModel : HomeViewModel by viewModels {
         val service = AppApiService.invoke()
