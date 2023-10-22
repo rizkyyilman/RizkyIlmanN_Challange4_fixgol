@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 data class CategoryResponse(
     @SerializedName("id")
     val id: String?,
-    @SerializedName("img_url")
+    @SerializedName("image_url")
     val imgUrl: String?,
     @SerializedName("name")
     val name: String?,

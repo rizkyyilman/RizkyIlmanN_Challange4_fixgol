@@ -19,6 +19,8 @@ import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.FragmentCartBinding
 import com.catnip.rizkyilmann_challange4.model.Cart
 import com.catnip.rizkyilmann_challange4.model.CartProduct
+import com.catnip.rizkyilmann_challange4.network.api.datasource.AppApiDataSource
+import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartAdapter
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartListener
 import com.catnip.rizkyilmann_challange4.ui.checkout.CheckoutActivity
@@ -35,7 +37,9 @@ class CartFragment : Fragment() {
         val database = AppDatabase.getInstance(requireContext())
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val service = AppApiService.invoke()
+        val apiDataSource = AppApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource )
         GenericViewModelFactory.create(CartViewModel(repo))
     }
 

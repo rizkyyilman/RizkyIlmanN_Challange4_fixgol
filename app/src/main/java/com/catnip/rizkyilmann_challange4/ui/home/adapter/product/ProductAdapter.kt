@@ -5,62 +5,68 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.catnip.heketon3.core.ViewHolderBinder
 import com.catnip.rizkyilmann_challange4.databinding.ItemGridMenuBinding
 import com.catnip.rizkyilmann_challange4.databinding.ItemLinearMenuBinding
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 
-class ProductAdapter (val adapterLayoutMode: AdapterLayoutMode,
-                      private val onClickListener: (DetailMenu) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    private val dataDiffer = AsyncListDiffer(this,object : DiffUtil.ItemCallback<DetailMenu>() {
-        override fun areItemsTheSame(oldItem: DetailMenu, newItem: DetailMenu): Boolean {
-            return oldItem.position == newItem.position &&
-                    oldItem.name == newItem.name &&
-                    oldItem.price == newItem.price &&
-                    oldItem.desc == newItem.desc &&
-                    oldItem.imgUrl == newItem.imgUrl
-        }
+class ProductAdapter(
+    private val onClickListener: (DetailMenu) -> Unit
+) : RecyclerView.Adapter<ProductAdapter.ItemProductViewHolder>() {
 
-        override fun areContentsTheSame(oldItem: DetailMenu, newItem: DetailMenu): Boolean {
-            return oldItem.hashCode() == newItem.hashCode()
-        }
-    })
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return  when (viewType){
-            AdapterLayoutMode.GRID.ordinal -> {
-                GridMenuItemViewHolder(
-                    binding = ItemGridMenuBinding.inflate(
-                        LayoutInflater.from(parent.context),parent,false
-                    ),onClickListener
-                )
+    private val dataDiffer =
+        AsyncListDiffer(this, object : DiffUtil.ItemCallback<DetailMenu>() {
+            override fun areItemsTheSame(
+                oldItem: DetailMenu,
+                newItem: DetailMenu
+            ): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            else -> {
-                LinearMenuItemViewHolder(
-                    binding = ItemLinearMenuBinding.inflate(
-                        LayoutInflater.from(parent.context),parent,false
-                    ),onClickListener)
+            override fun areContentsTheSame(
+                oldItem: DetailMenu,
+                newItem: DetailMenu
+            ): Boolean {
+                return oldItem.hashCode() == newItem.hashCode()
             }
-        }
+        })
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemProductViewHolder {
+        val binding =
+            ItemGridMenuBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemProductViewHolder(binding, onClickListener)
+    }
+
+    override fun onBindViewHolder(holder: ItemProductViewHolder, position: Int) {
+        holder.bindView(dataDiffer.currentList[position])
     }
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        (holder as ViewHolderBinder<DetailMenu>).bind(dataDiffer.currentList[position])
-    }
 
-    fun submitData(data : List<DetailMenu>){
+    fun submitData(data: List<DetailMenu>) {
         dataDiffer.submitList(data)
     }
 
     fun refreshList() {
-        notifyItemRangeChanged(0,dataDiffer.currentList.size)
+        notifyItemRangeChanged(0, dataDiffer.currentList.size)
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return adapterLayoutMode.ordinal
+    class ItemProductViewHolder(
+        private val binding: ItemGridMenuBinding,
+        val itemClick: (DetailMenu) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
+
+        fun bindView(item: DetailMenu) {
+            with(item) {
+                binding.ivMenu.load(item.imgUrl) {
+                    crossfade(true)
+                }
+                binding.tvMenuName.text = item.name
+                itemView.setOnClickListener { itemClick(this) }
+            }
+        }
+
     }
 }

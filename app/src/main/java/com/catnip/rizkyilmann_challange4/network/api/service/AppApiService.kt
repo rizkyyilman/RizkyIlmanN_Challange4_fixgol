@@ -22,7 +22,7 @@ interface AppApiService {
     suspend fun getCategories(): CategoriesResponse
 
     @GET("order")
-    suspend fun createOrder(@Body orderReques: OrderRequest): OrderResponse
+    suspend fun createOrder(@Body orderRequest: OrderRequest): OrderResponse
 
     companion object {
         @JvmStatic

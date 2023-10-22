@@ -22,9 +22,8 @@
 
     class RegisterActivity : AppCompatActivity() {
 
-        private val binding: ActivityRegisterBinding by lazy {
-            ActivityRegisterBinding.inflate(layoutInflater)
-        }
+        private lateinit var binding: ActivityRegisterBinding
+
         private val viewModel: RegisterViewModel by viewModels {
             GenericViewModelFactory.create(createViewModel())
         }
@@ -39,12 +38,16 @@
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
-            setContentView(R.layout.activity_register)
+            // Gunakan variabel pengikat layout yang benar
+            binding = ActivityRegisterBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
             setupForm()
             setClickListeners()
             observeResult()
             supportActionBar?.hide()
         }
+
 
 
 
@@ -187,7 +190,4 @@
                 true
             }
         }
-
-
-
     }

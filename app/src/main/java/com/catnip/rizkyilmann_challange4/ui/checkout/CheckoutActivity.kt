@@ -13,6 +13,8 @@ import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.ActivityCheckoutBinding
 import com.catnip.rizkyilmann_challange4.model.Cart
 import com.catnip.rizkyilmann_challange4.model.CartProduct
+import com.catnip.rizkyilmann_challange4.network.api.datasource.AppApiDataSource
+import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
 import com.catnip.rizkyilmann_challange4.ui.cart.adapter.CartAdapter
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
@@ -25,7 +27,9 @@ class CheckoutActivity : AppCompatActivity() {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val service = AppApiService.invoke()
+        val apiDataSource = AppApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(CheckoutViewModel(repo))
     }
     private val binding: ActivityCheckoutBinding by lazy {
