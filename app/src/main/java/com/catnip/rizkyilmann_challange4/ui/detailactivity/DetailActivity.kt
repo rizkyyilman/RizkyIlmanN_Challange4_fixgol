@@ -18,6 +18,8 @@ import com.catnip.rizkyilmann_challange4.data.repository.CartRepository
 import com.catnip.rizkyilmann_challange4.data.repository.CartRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.ActivityDetailBinding
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
+import com.catnip.rizkyilmann_challange4.network.api.datasource.AppApiDataSource
+import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.proceedWhen
 import com.catnip.rizkyilmann_challange4.utils.toCurrencyFormat
@@ -91,7 +93,9 @@ class DetailActivity : AppCompatActivity() {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val repo: CartRepository = CartRepositoryImpl(cartDataSource)
+        val service = AppApiService.invoke()
+        val apiDataSource = AppApiDataSource(service)
+        val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(
             DetailViewModel(intent?.extras, repo)
         )

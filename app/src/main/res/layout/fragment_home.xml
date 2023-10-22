@@ -146,6 +146,15 @@
         app:layout_constraintTop_toBottomOf="@id/cv_banner"
         tools:listitem="@layout/item_category_linear" />
 
+    <include
+        android:id="@+id/layout_state_category"
+        layout="@layout/common_layout_content_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/cv_banner"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_menu"
         android:layout_width="match_parent"
@@ -155,6 +164,13 @@
         tools:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         tools:listitem="@layout/item_grid_menu"
         tools:spanCount="2"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"/>
+
+    <include
+        android:id="@+id/layout_state_product"
+        layout="@layout/common_layout_content_state"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toTopOf="@id/nav_view"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

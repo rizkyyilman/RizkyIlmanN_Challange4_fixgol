@@ -58,7 +58,7 @@ suspend fun <T> proceed(block: suspend () -> T): ResultWrapper<T> {
             }
         )
     }.catch { e ->
-        ResultWrapper.Error<T>(exception = Exception(e))
+        emit(ResultWrapper.Error<T>(exception = Exception(e)))
     }.onStart {
         emit(ResultWrapper.Loading())
     }

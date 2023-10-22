@@ -1,13 +1,14 @@
-package com.catnip.rizkyilmann_challange4.data.repository
+package com.catnip.rizkyilmann_challange4.network.api.repository
 
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
 import com.catnip.rizkyilmann_challange4.data.database.entity.CartEntity
 import com.catnip.rizkyilmann_challange4.data.mapper.toCartEntity
 import com.catnip.rizkyilmann_challange4.data.mapper.toCartList
 import com.catnip.rizkyilmann_challange4.model.Cart
-import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppDataSource
+import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderItemRequest
+import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderRequest
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
 import com.catnip.rizkyilmann_challange4.utils.proceed
 import com.catnip.rizkyilmann_challange4.utils.proceedFlow
@@ -16,7 +17,6 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onStart
-import java.lang.IllegalStateException
 
 interface CartRepository {
     fun getUserCardData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>>
@@ -25,12 +25,18 @@ interface CartRepository {
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
+    suspend fun deleteAll()
 }
 
 class CartRepositoryImpl(
     private val dataSource: CartDataSource,
-    private val appDataSource: AppDataSource
+    private val appCh5DataSource: AppDataSource
 ) : CartRepository {
+
+    override suspend fun deleteAll() {
+        dataSource.deleteAll()
+    }
 
     override fun getUserCardData(): Flow<ResultWrapper<Pair<List<Cart>, Double>>> {
         return dataSource.getAllCarts()
@@ -104,6 +110,13 @@ class CartRepositoryImpl(
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
     }
 
-
-
+    override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            val orderItems = items.map {
+                OrderItemRequest(it.itemNotes, it.productId, it.itemQuantity)
+            } // xxx -> ppp
+            val orderRequest = OrderRequest(orderItems)
+            appCh5DataSource.createOrder(orderRequest).status == true
+        }
+    }
 }
