@@ -2,7 +2,6 @@ package com.catnip.rizkyilmann_challange4.data.mapper
 
 import com.catnip.rizkyilmann_challange4.data.database.entity.CartEntity
 import com.catnip.rizkyilmann_challange4.model.Cart
-import com.catnip.rizkyilmann_challange4.model.CartProduct
 
 fun CartEntity?.toCart() = Cart(
     id = this?.id ?: 0,
@@ -25,4 +24,3 @@ fun Cart?.toCartEntity() = CartEntity(
 )
 
 fun List<CartEntity?>.toCartList() = this.map { it.toCart() }
-

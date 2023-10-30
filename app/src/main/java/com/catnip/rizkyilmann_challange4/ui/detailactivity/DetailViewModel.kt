@@ -9,7 +9,7 @@ import com.catnip.rizkyilmann_challange4.ui.detailactivity.DetailActivity
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
 import kotlinx.coroutines.launch
 
-class DetailViewModel (
+class DetailViewModel(
     private val extras: Bundle?,
     private val cartRepository: CartRepository
 ) : ViewModel() {
@@ -26,7 +26,6 @@ class DetailViewModel (
     private val _addToCartResult = MutableLiveData<ResultWrapper<Boolean>>()
     val addToCartResult: LiveData<ResultWrapper<Boolean>>
         get() = _addToCartResult
-
 
     fun add() {
         val count = (productCountLiveData.value ?: 0) + 1

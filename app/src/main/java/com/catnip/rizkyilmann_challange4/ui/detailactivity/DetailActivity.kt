@@ -1,15 +1,15 @@
-package com.catnip.rizkyilmann_challange4.ui.detailactivity;
+package com.catnip.rizkyilmann_challange4.ui.detailactivity
 
 import DetailViewModel
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import coil.load
 import com.catnip.rizkyilmann_challange4.data.database.AppDatabase
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
@@ -23,6 +23,7 @@ import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.proceedWhen
 import com.catnip.rizkyilmann_challange4.utils.toCurrencyFormat
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 
 class DetailActivity : AppCompatActivity() {
 
@@ -88,19 +89,19 @@ class DetailActivity : AppCompatActivity() {
         startActivity(mapIntent)
     }
 
-
-    private val viewModel : DetailViewModel by viewModels {
+    private val viewModel: DetailViewModel by viewModels {
         val database = AppDatabase.getInstance(this)
         val cartDao = database.cartDao()
         val cartDataSource: CartDataSource = CartDatabaseDataSource(cartDao)
-        val service = AppApiService.invoke()
+        val chuckerInterceptor = ChuckerInterceptor(applicationContext)
+        val service = AppApiService.invoke(chuckerInterceptor)
         val apiDataSource = AppApiDataSource(service)
         val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(
             DetailViewModel(intent?.extras, repo)
         )
     }
-    private fun setClickListener(){
+    private fun setClickListener() {
         binding.ivBackIcon.setOnClickListener {
             onBackPressed()
         }
@@ -116,7 +117,6 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun observeData() {
-
         viewModel.productCountLiveData.observe(this) {
             binding.tvProductCount.text = it.toString()
         }
@@ -125,12 +125,13 @@ class DetailActivity : AppCompatActivity() {
                 doOnSuccess = {
                     Toast.makeText(this, "Add to cart success !", Toast.LENGTH_SHORT).show()
                     finish()
-                }, doOnError = {
+                },
+                doOnError = {
                     Toast.makeText(this, it.exception?.message.orEmpty(), Toast.LENGTH_SHORT).show()
-                })
+                }
+            )
         }
     }
-
 
     companion object {
         const val EXTRA_PRODUCT = "EXTRA_PRODUCT"
@@ -142,5 +143,4 @@ class DetailActivity : AppCompatActivity() {
             context.startActivity(intent)
         }
     }
-
 }

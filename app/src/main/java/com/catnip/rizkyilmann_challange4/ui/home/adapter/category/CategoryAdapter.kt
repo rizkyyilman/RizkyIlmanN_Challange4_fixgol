@@ -12,23 +12,25 @@ import com.catnip.rizkyilmann_challange4.model.Category
 class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
     RecyclerView.Adapter<CategoryAdapter.CategoryItemViewHolder>() {
 
-
     private val dataDiffer =
-        AsyncListDiffer(this, object : DiffUtil.ItemCallback<Category>() {
-            override fun areItemsTheSame(
-                oldItem: Category,
-                newItem: Category
-            ): Boolean {
-                return oldItem.id == newItem.id
-            }
+        AsyncListDiffer(
+            this,
+            object : DiffUtil.ItemCallback<Category>() {
+                override fun areItemsTheSame(
+                    oldItem: Category,
+                    newItem: Category
+                ): Boolean {
+                    return oldItem.id == newItem.id
+                }
 
-            override fun areContentsTheSame(
-                oldItem: Category,
-                newItem: Category
-            ): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                override fun areContentsTheSame(
+                    oldItem: Category,
+                    newItem: Category
+                ): Boolean {
+                    return oldItem.hashCode() == newItem.hashCode()
+                }
             }
-        })
+        )
 
     fun submitData(data: List<Category>) {
         dataDiffer.submitList(data)
@@ -57,13 +59,13 @@ class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
             binding.ivCategoryIcon.load(category.categoryImgUrl)
         }
 
-        fun bindView(item: Category){
-            with(item){
-                binding.ivCategoryIcon.load(item.categoryImgUrl){
+        fun bindView(item: Category) {
+            with(item) {
+                binding.ivCategoryIcon.load(item.categoryImgUrl) {
                     crossfade(true)
                 }
                 binding.tvCategoryName.text = item.name
-                itemView.setOnClickListener{ onItemClick(this)}
+                itemView.setOnClickListener { onItemClick(this) }
             }
         }
     }

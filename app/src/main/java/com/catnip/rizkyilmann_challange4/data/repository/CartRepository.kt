@@ -5,9 +5,10 @@ import com.catnip.rizkyilmann_challange4.data.database.entity.CartEntity
 import com.catnip.rizkyilmann_challange4.data.mapper.toCartEntity
 import com.catnip.rizkyilmann_challange4.data.mapper.toCartList
 import com.catnip.rizkyilmann_challange4.model.Cart
-import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppDataSource
+import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderItemRequest
+import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderRequest
 import com.catnip.rizkyilmann_challange4.utils.ResultWrapper
 import com.catnip.rizkyilmann_challange4.utils.proceed
 import com.catnip.rizkyilmann_challange4.utils.proceedFlow
@@ -24,6 +25,7 @@ interface CartRepository {
     suspend fun decreaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun increaseCart(item: Cart): Flow<ResultWrapper<Boolean>>
     suspend fun setCartNotes(item: Cart): Flow<ResultWrapper<Boolean>>
+    suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>>
     suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>>
 }
 
@@ -45,10 +47,11 @@ class CartRepositoryImpl(
                     Pair(result, totalPrice)
                 }
             }.map {
-                if (it.payload?.first?.isEmpty() == true)
+                if (it.payload?.first?.isEmpty() == true) {
                     ResultWrapper.Empty(it.payload)
-                else
+                } else {
                     it
+                }
             }
             .onStart {
                 emit(ResultWrapper.Loading())
@@ -100,10 +103,17 @@ class CartRepositoryImpl(
         return proceedFlow { dataSource.updateCart(item.toCartEntity()) > 0 }
     }
 
+    override suspend fun order(items: List<Cart>): Flow<ResultWrapper<Boolean>> {
+        return proceedFlow {
+            val orderItems = items.map {
+                OrderItemRequest(it.itemNotes, it.productId, it.itemQuantity)
+            }
+            val orderRequest = OrderRequest(orderItems)
+            appDataSource.createOrder(orderRequest).status == true
+        }
+    }
+
     override suspend fun deleteCart(item: Cart): Flow<ResultWrapper<Boolean>> {
         return proceedFlow { dataSource.deleteCart(item.toCartEntity()) > 0 }
     }
-
-
-
 }

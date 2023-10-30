@@ -7,5 +7,4 @@ import kotlinx.coroutines.Dispatchers
 
 class CheckoutViewModel(private val cartRepository: CartRepository) : ViewModel() {
     val cartList = cartRepository.getUserCardData().asLiveData(Dispatchers.IO)
-
 }
