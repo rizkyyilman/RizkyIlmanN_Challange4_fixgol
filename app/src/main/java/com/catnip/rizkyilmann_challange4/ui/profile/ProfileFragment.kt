@@ -15,7 +15,6 @@ import com.catnip.rizkyilmann_challange4.R
 import com.catnip.rizkyilmann_challange4.data.repository.UserRepositoryImpl
 import com.catnip.rizkyilmann_challange4.databinding.FragmentProfileBinding
 import com.catnip.rizkyilmann_challange4.network.auth.FirebaseAuthDataSourceImpl
-import com.catnip.rizkyilmann_challange4.ui.profile.ProfileViewModel
 import com.catnip.rizkyilmann_challange4.ui.registeractivity.RegisterActivity
 import com.catnip.rizkyilmann_challange4.utils.GenericViewModelFactory
 import com.catnip.rizkyilmann_challange4.utils.highLightWord
@@ -38,7 +37,8 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inisialisasi binding
@@ -86,9 +86,11 @@ class ProfileFragment : Fragment() {
     }
 
     private fun navigateToMain() {
-        startActivity(Intent(requireContext(), MainActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-        })
+        startActivity(
+            Intent(requireContext(), MainActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+        )
     }
 
     private fun setClickListeners() {
@@ -105,7 +107,6 @@ class ProfileFragment : Fragment() {
         startActivity(intent)
     }
 
-
     private fun doLogin() {
         if (isFormValid()) {
             val email = binding.layoutForm.etEmail.text.toString().trim()
@@ -119,7 +120,7 @@ class ProfileFragment : Fragment() {
         val password = binding.layoutForm.etPassword.text.toString().trim()
 
         return checkEmailValidation(email) &&
-                checkPasswordValidation(password, binding.layoutForm.tilPassword)
+            checkPasswordValidation(password, binding.layoutForm.tilPassword)
     }
 
     private fun checkEmailValidation(email: String): Boolean {

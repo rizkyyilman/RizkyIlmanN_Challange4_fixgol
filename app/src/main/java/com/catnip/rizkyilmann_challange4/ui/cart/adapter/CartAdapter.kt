@@ -1,6 +1,5 @@
 package com.catnip.rizkyilmann_challange4.ui.cart.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
@@ -12,43 +11,54 @@ import com.catnip.rizkyilmann_challange4.R
 import com.catnip.rizkyilmann_challange4.databinding.ItemCartMenuBinding
 import com.catnip.rizkyilmann_challange4.databinding.ItemCartMenuOrderBinding
 import com.catnip.rizkyilmann_challange4.model.Cart
-import com.catnip.rizkyilmann_challange4.model.CartProduct
 import com.catnip.rizkyilmann_challange4.utils.doneEditing
 
-class CartAdapter (private val cartListener: CartListener? = null) :
+class CartAdapter(private val cartListener: CartListener? = null) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val dataDiffer =
-        AsyncListDiffer(this, object : DiffUtil.ItemCallback<Cart>() {
-            override fun areItemsTheSame(
-                oldItem: Cart,
-                newItem: Cart
-            ): Boolean {
-                return oldItem.id == newItem.id && oldItem.id == newItem.id
-            }
+        AsyncListDiffer(
+            this,
+            object : DiffUtil.ItemCallback<Cart>() {
+                override fun areItemsTheSame(
+                    oldItem: Cart,
+                    newItem: Cart
+                ): Boolean {
+                    return oldItem.id == newItem.id && oldItem.id == newItem.id
+                }
 
-            override fun areContentsTheSame(
-                oldItem: Cart,
-                newItem: Cart
-            ): Boolean {
-                return oldItem.hashCode() == newItem.hashCode()
+                override fun areContentsTheSame(
+                    oldItem: Cart,
+                    newItem: Cart
+                ): Boolean {
+                    return oldItem.hashCode() == newItem.hashCode()
+                }
             }
-        })
+        )
 
     fun submitData(data: List<Cart>) {
         dataDiffer.submitList(data)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (cartListener != null) CartViewHolder(
-            ItemCartMenuBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
-            ), cartListener
-        ) else CartOrderViewHolder(
-            ItemCartMenuOrderBinding.inflate(
-                LayoutInflater.from(parent.context), parent, false
+        return if (cartListener != null) {
+            CartViewHolder(
+                ItemCartMenuBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                ),
+                cartListener
             )
-        )
+        } else {
+            CartOrderViewHolder(
+                ItemCartMenuOrderBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
+            )
+        }
     }
 
     override fun getItemCount(): Int = dataDiffer.currentList.size
@@ -56,7 +66,6 @@ class CartAdapter (private val cartListener: CartListener? = null) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         (holder as ViewHolderBinder<Cart>).bind(dataDiffer.currentList[position])
     }
-
 }
 
 class CartViewHolder(
@@ -101,13 +110,12 @@ class CartViewHolder(
 }
 
 class CartOrderViewHolder(
-    private val binding: ItemCartMenuOrderBinding,
+    private val binding: ItemCartMenuOrderBinding
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<Cart> {
     override fun bind(item: Cart) {
         setCartData(item)
         setCartNotes(item)
     }
-
 
     private fun setCartData(item: Cart) {
         with(binding) {
@@ -127,9 +135,7 @@ class CartOrderViewHolder(
     private fun setCartNotes(item: Cart) {
         binding.tvNotes.text = item.itemNotes
     }
-
 }
-
 
 interface CartListener {
     fun onPlusTotalItemCartClicked(cart: Cart)

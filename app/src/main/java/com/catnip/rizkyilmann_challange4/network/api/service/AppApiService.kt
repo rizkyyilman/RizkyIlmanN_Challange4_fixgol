@@ -5,6 +5,7 @@ import com.catnip.rizkyilmann_challange4.network.api.model.category.CategoriesRe
 import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderRequest
 import com.catnip.rizkyilmann_challange4.network.api.model.order.OrderResponse
 import com.catnip.rizkyilmann_challange4.network.api.model.product.ProductsResponse
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -26,8 +27,9 @@ interface AppApiService {
 
     companion object {
         @JvmStatic
-        operator fun invoke(): AppApiService {
+        operator fun invoke(chucker: ChuckerInterceptor): AppApiService {
             val okHttpClient = OkHttpClient.Builder()
+                .addInterceptor(chucker)
                 .connectTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(120, TimeUnit.SECONDS)
                 .build()

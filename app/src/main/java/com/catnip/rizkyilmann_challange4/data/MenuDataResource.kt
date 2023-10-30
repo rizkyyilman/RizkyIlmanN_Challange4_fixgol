@@ -2,8 +2,7 @@ package com.catnip.rizkyilmann_challange4.data
 
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 
-
-interface MenuDataSource{
+interface MenuDataSource {
     fun getDetailMenu(): List<DetailMenu>
 }
 

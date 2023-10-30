@@ -1,7 +1,6 @@
 package com.catnip.rizkyilmann_challange4.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.util.UUID
 
 @Parcelize
 data class DetailMenu(

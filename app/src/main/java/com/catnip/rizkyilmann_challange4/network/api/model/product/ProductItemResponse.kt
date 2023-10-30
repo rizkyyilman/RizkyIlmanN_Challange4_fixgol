@@ -20,7 +20,6 @@ data class ProductItemResponse(
     val imgUrl: String?
 )
 
-
 fun ProductItemResponse.toProduct() =
     DetailMenu(
         id = this.id,
@@ -29,6 +28,5 @@ fun ProductItemResponse.toProduct() =
         desc = this.desc.orEmpty(),
         imgUrl = this.imgUrl.orEmpty()
     )
-
 
 fun Collection<ProductItemResponse>.toProductList() = this.map { it.toProduct() }

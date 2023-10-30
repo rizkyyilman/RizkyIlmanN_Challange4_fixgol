@@ -12,7 +12,7 @@ interface AppDataSource {
     suspend fun createOrder(orderRequest: OrderRequest): OrderResponse
 }
 
-class AppApiDataSource(private val service: AppApiService) : AppDataSource{
+class AppApiDataSource(private val service: AppApiService) : AppDataSource {
     override suspend fun getProducts(category: String?): ProductsResponse {
         return service.getProducts(category)
     }
@@ -24,6 +24,4 @@ class AppApiDataSource(private val service: AppApiService) : AppDataSource{
     override suspend fun createOrder(orderRequest: OrderRequest): OrderResponse {
         return service.createOrder(orderRequest)
     }
-
-
 }

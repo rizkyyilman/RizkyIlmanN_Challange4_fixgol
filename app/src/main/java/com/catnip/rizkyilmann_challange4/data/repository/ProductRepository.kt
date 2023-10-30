@@ -1,6 +1,5 @@
 package com.catnip.rizkyilmann_challange4.data.repository
 
-
 import com.catnip.rizkyilmann_challange4.model.Category
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppDataSource
@@ -16,7 +15,7 @@ interface ProductRepository {
 }
 
 class ProductRepositoryImpl(
-    private val apiDataSource: AppDataSource,
+    private val apiDataSource: AppDataSource
 ) : ProductRepository {
 
     override fun getCategories(): Flow<ResultWrapper<List<Category>>> {
@@ -24,7 +23,6 @@ class ProductRepositoryImpl(
             apiDataSource.getCategories().data?.toCategoryList() ?: emptyList()
         }
     }
-
 
     override fun getProducts(category: String?): Flow<ResultWrapper<List<DetailMenu>>> {
         return proceedFlow {
