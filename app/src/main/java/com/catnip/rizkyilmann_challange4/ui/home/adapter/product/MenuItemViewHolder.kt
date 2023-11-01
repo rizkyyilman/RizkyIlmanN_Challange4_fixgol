@@ -7,15 +7,14 @@ import com.catnip.rizkyilmann_challange4.databinding.ItemGridMenuBinding
 import com.catnip.rizkyilmann_challange4.databinding.ItemLinearMenuBinding
 import com.catnip.rizkyilmann_challange4.model.DetailMenu
 
-
 class GridMenuItemViewHolder(
-    private val binding : ItemGridMenuBinding,
-    private val onItemClickListener : (DetailMenu) -> Unit
+    private val binding: ItemGridMenuBinding,
+    private val onItemClickListener: (DetailMenu) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<DetailMenu> {
     override fun bind(item: DetailMenu) {
-       binding.ivMenu.load(item.imgUrl){
-           crossfade(true)
-       }
+        binding.ivMenu.load(item.imgUrl) {
+            crossfade(true)
+        }
         binding.tvMenuName.text = item.name
         binding.root.setOnClickListener {
             onItemClickListener.invoke(item)
@@ -27,7 +26,7 @@ class LinearMenuItemViewHolder(
     private val onCLickListener: (DetailMenu) -> Unit
 ) : RecyclerView.ViewHolder(binding.root), ViewHolderBinder<DetailMenu> {
     override fun bind(item: DetailMenu) {
-        binding.ivMenu.load(item.imgUrl){
+        binding.ivMenu.load(item.imgUrl) {
             crossfade(true)
         }
         binding.tvMenuname.text = item.name

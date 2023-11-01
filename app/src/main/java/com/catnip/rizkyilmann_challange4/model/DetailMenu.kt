@@ -1,14 +1,12 @@
 package com.catnip.rizkyilmann_challange4.model
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
-import java.util.UUID
 
 @Parcelize
 data class DetailMenu(
-    val id: String = UUID.randomUUID().toString(),
-    val position: Int,
+    val id: Int? = null,
     val name: String,
-    val price: String,
+    val harga: Double,
     val imgUrl: String,
     val desc: String
 ) : Parcelable
