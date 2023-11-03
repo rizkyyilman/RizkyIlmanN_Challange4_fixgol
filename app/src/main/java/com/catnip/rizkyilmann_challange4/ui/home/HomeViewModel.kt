@@ -33,8 +33,10 @@ class HomeViewModel(private val repository: ProductRepository) : ViewModel() {
     }
 
     fun getProducts(category: String? = null) {
+        val selectedCategory = category ?: "all" // Jika category null, maka digunakan "all"
+        _currentCategorySlug.value = selectedCategory
         viewModelScope.launch(Dispatchers.IO) {
-            repository.getProducts(if (category == "all") null else category).collect {
+            repository.getProducts(selectedCategory).collect {
                 _products.postValue(it)
             }
         }

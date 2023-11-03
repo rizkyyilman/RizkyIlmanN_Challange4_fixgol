@@ -33,6 +33,7 @@ class CheckoutActivity : AppCompatActivity() {
         val repo: CartRepository = CartRepositoryImpl(cartDataSource, apiDataSource)
         GenericViewModelFactory.create(CheckoutViewModel(repo))
     }
+
     private val binding: ActivityCheckoutBinding by lazy {
         ActivityCheckoutBinding.inflate(layoutInflater)
     }
