@@ -29,6 +29,7 @@ class ProfileFragment : Fragment() {
     private val viewModel: ProfileViewModel by viewModels {
         GenericViewModelFactory.create(createViewModel())
     }
+
     private fun createViewModel(): ProfileViewModel {
         val firebaseAuth = FirebaseAuth.getInstance()
         val dataSource = FirebaseAuthDataSourceImpl(firebaseAuth)
