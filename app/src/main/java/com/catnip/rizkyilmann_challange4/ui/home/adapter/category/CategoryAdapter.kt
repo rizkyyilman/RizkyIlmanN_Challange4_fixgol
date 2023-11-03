@@ -54,18 +54,15 @@ class CategoryAdapter(private val onItemClick: (Category) -> Unit) :
     ) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(category: Category) {
-            binding.tvCategoryName.text = category.name
-            binding.ivCategoryIcon.load(category.categoryImgUrl)
-        }
-
         fun bindView(item: Category) {
             with(item) {
                 binding.ivCategoryIcon.load(item.categoryImgUrl) {
                     crossfade(true)
                 }
                 binding.tvCategoryName.text = item.name
-                itemView.setOnClickListener { onItemClick(this) }
+                itemView.setOnClickListener {
+                    onItemClick(this)
+                }
             }
         }
     }
