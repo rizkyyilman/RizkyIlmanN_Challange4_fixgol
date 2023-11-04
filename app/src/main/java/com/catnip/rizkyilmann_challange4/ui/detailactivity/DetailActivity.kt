@@ -101,6 +101,7 @@ class DetailActivity : AppCompatActivity() {
             DetailViewModel(intent?.extras, repo)
         )
     }
+
     private fun setClickListener() {
         binding.ivBackIcon.setOnClickListener {
             onBackPressed()

@@ -1,5 +1,6 @@
 package com.catnip.rizkyilmann_challange4
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -7,7 +8,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.catnip.rizkyilmann_challange4.databinding.ActivityMainBinding
+import com.catnip.rizkyilmann_challange4.ui.loginactivity.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,9 +34,19 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_profile
             )
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
+        navController.addOnDestinationChangedListener { controller, destination, _ ->
+            if (destination.id == R.id.navigation_profile && FirebaseAuth.getInstance().currentUser == null) {
+                controller.popBackStack()
+                navigateToLogin()
+            }
+        }
         supportActionBar?.hide()
+    }
+    private fun navigateToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 }

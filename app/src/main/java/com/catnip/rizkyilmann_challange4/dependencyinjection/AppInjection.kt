@@ -1,5 +1,6 @@
 package com.catnip.rizkyilmann_challange4.dependencyinjection
 
+import DetailViewModel
 import com.catnip.rizkyilmann_challange4.data.database.AppDatabase
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDatabaseDataSource
@@ -13,14 +14,18 @@ import com.catnip.rizkyilmann_challange4.datastore.appDataStore
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppApiDataSource
 import com.catnip.rizkyilmann_challange4.network.api.datasource.AppDataSource
 import com.catnip.rizkyilmann_challange4.network.api.service.AppApiService
+import com.catnip.rizkyilmann_challange4.network.auth.FirebaseAuthDataSource
+import com.catnip.rizkyilmann_challange4.network.auth.FirebaseAuthDataSourceImpl
 import com.catnip.rizkyilmann_challange4.ui.cart.CartViewModel
+import com.catnip.rizkyilmann_challange4.ui.checkout.CheckoutViewModel
 import com.catnip.rizkyilmann_challange4.ui.home.HomeViewModel
 import com.catnip.rizkyilmann_challange4.ui.profile.ProfileViewModel
 import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.google.firebase.auth.FirebaseAuth
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.module.Module
-import org.koin.core.scope.get
 import org.koin.dsl.module
 
 object AppInjection {
@@ -34,6 +39,8 @@ object AppInjection {
     private val networkModule = module {
         single { ChuckerInterceptor(androidContext()) }
         single { AppApiService.invoke(get()) }
+        single { FirebaseAuth.getInstance() }
+        single<FirebaseAuthDataSource> { FirebaseAuthDataSourceImpl(get()) }
     }
 
     private val dataSourceModule = module {
@@ -51,6 +58,8 @@ object AppInjection {
         viewModelOf(::HomeViewModel)
         viewModelOf(::CartViewModel)
         viewModelOf(::ProfileViewModel)
+        viewModel { params -> DetailViewModel(params.get(), get()) }
+        viewModel { params -> CheckoutViewModel(get()) }
     }
 
     val modules: List<Module> = listOf(
