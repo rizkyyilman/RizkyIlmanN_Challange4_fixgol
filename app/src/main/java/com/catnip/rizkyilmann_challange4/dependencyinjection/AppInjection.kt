@@ -1,6 +1,7 @@
 package com.catnip.rizkyilmann_challange4.dependencyinjection
 
 import DetailViewModel
+import com.catnip.rizkyilmann_challange4.MainViewModel
 import com.catnip.rizkyilmann_challange4.data.database.AppDatabase
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDataSource
 import com.catnip.rizkyilmann_challange4.data.database.datasource.CartDatabaseDataSource
@@ -60,6 +61,7 @@ object AppInjection {
         viewModelOf(::ProfileViewModel)
         viewModel { params -> DetailViewModel(params.get(), get()) }
         viewModel { params -> CheckoutViewModel(get()) }
+        viewModelOf(::MainViewModel)
     }
 
     val modules: List<Module> = listOf(

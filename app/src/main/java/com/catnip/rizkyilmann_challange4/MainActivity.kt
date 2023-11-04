@@ -11,10 +11,13 @@ import com.catnip.rizkyilmann_challange4.databinding.ActivityMainBinding
 import com.catnip.rizkyilmann_challange4.ui.loginactivity.LoginActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val viewModel: MainViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
